@@ -31,6 +31,7 @@ https://github.com/mekuryGlobal/ChipChan/blob/main/Assets/Scripts/ContractCalls/
 https://github.com/mekuryGlobal/ChipChan/blob/main/Assets/Scripts/ContractCalls/TransferMenu.cs
 
 #Game Demo
+https://mekury.itch.io/chio
 
 #Pitch Video
 
