@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public GameObject MarketplaceMenu;
     public GameObject WelcomeMenu;
     public GameObject minter;
+    public GameObject newAtt;
+    public GameObject ViewAtt;
     public GameObject AchievementText;
     public Text WalletText;
     public Text CoinsText;
@@ -33,6 +38,16 @@ public class PlayerController : MonoBehaviour
     public float gravity = -50;
     private float groundedGravity = -20f;
     public float rotationFactorPerFrame = 15.0f;
+
+    [Header("Events")] public UnityEvent OnMint = new UnityEvent();
+
+    [Header("Events")] public UnityEvent OnExit = new UnityEvent();
+
+    [Header("Events")] public UnityEvent OnMinter = new UnityEvent();
+
+
+
+
 
     void Awake()
     {
@@ -96,7 +111,7 @@ public class PlayerController : MonoBehaviour
         if (hit.transform.tag == "MintNFT")
         {
             FindObjectOfType<AudioManager>().Play("Pop");
-            MintNFTMenu.SetActive(true);
+            OnMint.Invoke();
         }
 
         if (hit.transform.tag == "VoucherMintNFT")
@@ -165,7 +180,7 @@ public class PlayerController : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("Pop");
         CoinsText.text = "Coins: " + GlobalManager.GetComponent<Global>().globalCoins.ToString();
-        MintNFTMenu.SetActive(false);
+        OnExit.Invoke();
     }
 
     async public void CloseVoucherMintNFTMenu()
@@ -229,6 +244,31 @@ public class PlayerController : MonoBehaviour
         Application.OpenURL("https://marketplace-ui.onrender.com/");
     }
 
+    public void CloseNewAtt()
+    {
+        FindObjectOfType<AudioManager>().Play("Pop");
+        newAtt.SetActive(false);
+    }
+
+    public void OpenNewAtt()
+    {
+        FindObjectOfType<AudioManager>().Play("Pop");
+        newAtt.SetActive(true);
+    }
+
+
+    public void CloseviewAtt()
+    {
+        FindObjectOfType<AudioManager>().Play("Pop");
+        ViewAtt.SetActive(false);
+    }
+
+    public void OpenViewAtt()
+    {
+        FindObjectOfType<AudioManager>().Play("Pop");
+        ViewAtt.SetActive(true);
+    }
+
     // used for player movement, call this to enable or disable player input detection
     private void OnEnable()
     {
@@ -269,6 +309,14 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<AudioManager>().Pause("Walk");
             animator.SetBool("isRunning", false);
         }
+    }
+
+    public void Quit()
+    {
+        // Clear Account
+        PlayerPrefs.SetString("Account", "0x0000000000000000000000000000000000000001");
+        // go to login scene
+        SceneManager.LoadScene(0);
     }
 
     // rotation

@@ -52,22 +52,32 @@ namespace IPFS_Uploader
 
         #endregion
 
-        
+
         #region PUBLIC_METHODS
 
         public void ToMainState()
         {
             ChangeState("Main");
         }
-        
+
         public void ToViewAttributesState()
         {
             ChangeState("ViewAttributes");
         }
-        
+
         public void ToNewAttributeState()
         {
             ChangeState("NewAttribute");
+        }
+
+        public void ToLeaVeState()
+        {
+            Exit();
+        }
+
+        public void ToMintState()
+        {
+            ChangeState("Minter");
         }
 
         public void SetStatusLabelText(string newText)
@@ -77,10 +87,10 @@ namespace IPFS_Uploader
         }
 
         #endregion
-        
-        
+
+
         #region EVENT_HANDLERS
-        
+
         private void AddAttributeObject(AttributeObject obj)
         {
             // We add an ID to the object while adding it to the list.
