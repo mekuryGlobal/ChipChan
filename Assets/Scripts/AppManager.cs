@@ -28,6 +28,7 @@ namespace IPFS_Uploader
         [SerializeField] private MainPanel mainPanel;
         [SerializeField] private TextMeshProUGUI statusLabel;
         
+        
         [HideInInspector] public List<AttributeObject> currentAttributeObjects = new List<AttributeObject>();
 
         
