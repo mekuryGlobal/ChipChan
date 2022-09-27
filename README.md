@@ -22,5 +22,16 @@ https://github.com/mekuryGlobal/ChipChan/blob/main/Assets/Scripts/States/ViewAtt
 Buy NFTs from MarketPlace - (https://github.com/mekuryGlobal/ChipChan/blob/main/Assets/Scripts/ContractCalls/MarketplaceListedNFT.cs)
 Sell NFTs inMarketPlace - https://github.com/mekuryGlobal/ChipChan/blob/main/Assets/Scripts/ContractCalls/MarketplaceSellNFT.cs
  
- Tranfer Token
+  
+#Mint NFTs 
+Players can Mint NFTs directly to their accounts in ChipChan, they simply provided the CID for the data to be included in the NFTs.
+https://github.com/mekuryGlobal/ChipChan/blob/main/Assets/Scripts/ContractCalls/MintMenu.cs
+
+#Transfer Token
+https://github.com/mekuryGlobal/ChipChan/blob/main/Assets/Scripts/ContractCalls/TransferMenu.cs
+
+#Game Demo
+
+#Pitch Video
+
 
