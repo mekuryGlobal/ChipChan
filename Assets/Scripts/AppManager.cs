@@ -27,8 +27,10 @@ namespace IPFS_Uploader
     {
         [SerializeField] private MainPanel mainPanel;
         [SerializeField] private TextMeshProUGUI statusLabel;
-        
-        
+        public GameObject minter;
+        public TMP_Text cID;
+
+
         [HideInInspector] public List<AttributeObject> currentAttributeObjects = new List<AttributeObject>();
 
         
@@ -137,11 +139,15 @@ namespace IPFS_Uploader
                 SetStatusLabelText("Failed to save metadata to IPFS");
                 
                 mainPanel.EnableUploadButton();
+                FindObjectOfType<AudioManager>().Play("Pop");
                 return;
             }
             
             Debug.Log("Metadata saved successfully to IPFS:");
             Debug.Log(ipfsMetadataPath);
+
+            minter.SetActive(true);
+            cID.text = ipfsMetadataPath;
             
             SetStatusLabelText("Metadata saved successfully to IPFS!");
             mainPanel.EnableUploadButton();

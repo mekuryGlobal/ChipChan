@@ -5,33 +5,43 @@ using Models;
 using UnityEditor;
 using UnityEngine.UI; // needed when accessing text elements
 using UnityEngine;
+using TMPro;
 
-#if UNITY_WEBGL
+
 public class MintMenu : MonoBehaviour
 {
-    // This script has been moved from the MintWebGL1155.cs example in the Minter scripts folder to show you how to make additional changes
-    public GameObject SuccessPopup;
-    public Text responseText;
+    private string chain = "ethereum";
+    private string network = "goerli"; // mainnet ropsten kovan rinkeby goerli
+    private string account;
+    private string to;
+    public TMP_Text cID;
+    private string cid1155;
+    private string chainId = "5";
+    public string type1155 = "1155";
+
+    #if UNITY_WEBGL
+    public void Awake()
+    {
+        account = PlayerPrefs.GetString("Account");
+        to = PlayerPrefs.GetString("Account");
+        cid1155 = cID.text;
+    }
+
 
     public async void MintNFT()
     {
-        string account = PlayerPrefs.GetString("Account"); // the account calling the mint functions
-        string chain = "ethereum";
-        string network = "goerli"; // mainnet ropsten kovan rinkeby goerli
-        string to = account; // destination of NFT
-        string cid = "bafkzvzacdi7w4or4vqxbnwpbbenreh2qgtmogxbi5m2zpjkxdl7a";
-        string type721 = "1155";
-        CreateMintModel.Response nftResponse = await EVM.CreateMint(chain, network, account, to, cid, type721);
+        CreateMintModel.Response nftResponse = await EVM.CreateMint(chain, network, account, to, cid1155, type1155);
         // connects to user's browser wallet (metamask) to send a transaction
         try
-        {   
-            string response = await Web3GL.SendTransactionData(nftResponse.tx.to, nftResponse.tx.value, nftResponse.tx.gasPrice,nftResponse.tx.gasLimit, nftResponse.tx.data);
+        {
+            string response = await Web3GL.SendTransactionData(nftResponse.tx.to, nftResponse.tx.value, nftResponse.tx.gasPrice, nftResponse.tx.gasLimit, nftResponse.tx.data);
             print("Response: " + response);
-            SuccessPopup.SetActive(true);
-            responseText.text = "Success! TXHash: " + response;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             Debug.LogException(e, this);
         }
     }
-}
 #endif
+
+}

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public GameObject VoucherMenu;
     public GameObject MarketplaceMenu;
     public GameObject WelcomeMenu;
+    public GameObject minter;
     public GameObject AchievementText;
     public Text WalletText;
     public Text CoinsText;
@@ -209,6 +210,12 @@ public class PlayerController : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("Pop");
         MarketplaceMenu.SetActive(false);
+    }
+
+    public void CloseMinter()
+    {
+        FindObjectOfType<AudioManager>().Play("Pop");
+        minter.SetActive(false);
     }
 
     public void CloseWelcomeMenu()
