@@ -33,6 +33,6 @@ https://github.com/mekuryGlobal/ChipChan/blob/main/Assets/Scripts/ContractCalls/
 #Game Demo
 https://mekury.itch.io/chio
 
-#Pitch Video
+#Demo Video
 
-
+https://vimeo.com/750227749
